@@ -1,0 +1,18 @@
+dependencies:
+- name: spark-operator
+  repository: https://kubeflow.github.io/spark-operator
+  version: 1.2.14
+- name: airflow
+  repository: file://charts/airflow
+  version: 0.0.1
+- name: kafka
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 26.4.0
+- name: postgresql
+  repository: file://charts/postgresql
+  version: 0.0.1
+- name: metabase
+  repository: https://pmint93.github.io/helm-charts
+  version: 2.15.6
+digest: sha256:e2f8384357d4923dd6b653cca95279abf68dccf09ee676483341e66a27f54ea6
+generated: "2024-06-04T20:53:08.180106+03:00"
