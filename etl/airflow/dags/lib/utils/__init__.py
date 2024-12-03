@@ -22,7 +22,7 @@ def create_spark_session(app_name, local=False):
 
     aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
     aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
-    print(aws_secret_access_key)
+    print("AWS_KEY_DEBUG", aws_secret_access_key)
 
     defaults = {
         'spark.hadoop.fs.s3a.endpoint': 'http://s3.eu-west-1.amazonaws.com',

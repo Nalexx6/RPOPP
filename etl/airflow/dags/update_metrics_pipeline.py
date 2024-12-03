@@ -34,5 +34,9 @@ with DAG(dag_id="update_metrics",
         application_file="update_metrics_step.yaml",
         kubernetes_conn_id="kubernetes_in_cluster",
         do_xcom_push=True,
+        env_vars={
+            'AWS_ACCESS_KEY_ID': os.getenv("AWS_ACCESS_KEY_ID"),
+            'AWS_SECRET_ACCESS_KEY': os.getenv("AWS_SECRET_ACCESS_KEY"),
+        },
         dag=dag,
     )
