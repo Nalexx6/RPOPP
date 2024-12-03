@@ -10,7 +10,7 @@ on:
       - "main"
 
 jobs:
-  push_dags_lib:
+  push-dags-lib-to-s3:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +27,7 @@ jobs:
     - name: Publish to S3
       run: aws s3 cp --recursive ./airflow/dags  s3://${{ secrets.BUCKET_NAME }}/${{ secrets.DAGS_FOLDER }} --exclude "*.pyc"
 
-  build-and-push:
+  build-image-and-push:
       runs-on: ubuntu-latest
 
       steps:

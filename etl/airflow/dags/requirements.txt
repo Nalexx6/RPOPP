@@ -3,10 +3,5 @@
 # python3 -mpip install -r requirements.txt
 #
 
-pandas
-fastparquet
-pyspark==3.4.0
 boto3
 pyyaml
-pymongo
-kafka-python
