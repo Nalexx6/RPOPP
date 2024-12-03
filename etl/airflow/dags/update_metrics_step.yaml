@@ -21,7 +21,7 @@ metadata:
 spec:
   type: Python
   mode: cluster
-  image: "nalexx06/spark-test:0.8"
+  image: "nalexx06/nalexx-practice:latest"
   imagePullPolicy: Always
   mainApplicationFile: "local:///opt/spark/dags/lib/batch.py"
   sparkVersion: "3.4.0"
