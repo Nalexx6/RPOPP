@@ -34,7 +34,7 @@ spec:
       - "--db-url"
       - "http://etl-postgres.default.svc.cluster.local"
       - "--db-pass"
-      - "postgres"
+      - "spark"
   restartPolicy:
     type: Never
   volumes:
@@ -61,3 +61,14 @@ spec:
     volumeMounts:
       - name: "test-volume"
         mountPath: "/tmp"
+
+kubernetes:
+  # example:
+  # env_vars:
+  # - name: TEST_NAME
+  #   value: TEST_VALUE
+  env_vars:
+    - name: AWS_ACCESS_KEY_ID
+      value: {AWS_ACCESS_KEY_ID}
+    - name: AWS_SECRET_ACCESS_KEY
+      value: {AWS_SECRET_ACCESS_KEY}

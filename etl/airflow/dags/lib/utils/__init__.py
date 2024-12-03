@@ -95,12 +95,12 @@ def load_config(path, db_url=None, db_pass=None):
 
 def save_metrics(df, config, table_name):
 
-    (df.write.format("jdbc").option("url", f"jdbc:postgresql://{config['db_url']}:5432/postgres")
+    (df.write.format("jdbc").option("url", f"jdbc:postgresql://{config['db_url']}:5432/spark_db")
         .option("driver", "org.postgresql.Driver")
-        .option("user", "postgres")
+        .option("user", "spark")
         .option("password", config['db_pass'])
         .option("dbtable", f"public.{table_name}")
-        .option("truncate", "true").mode("append")
+        .mode("append")
         .save())
 
 
