@@ -1,13 +1,6 @@
-kafka_brokers:
-  - localhost:9092
-topics:
-  - data-topic
+root: s3a://nalexx6-practice/data/storage
 
-root: s3a://etl-coursework/data/storage
-checkpoint_location: s3a://etl-coursework/data/checkpoint
-
-input_table: test_sample.parquet
-output_table: trips_data.parquet
+input_table: trips_data.parquet
 licences_table: licenses.csv
 zones_table: zones.csv
 

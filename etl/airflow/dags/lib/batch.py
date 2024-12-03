@@ -10,7 +10,7 @@ logging.basicConfig(format='%(asctime)s: %(levelname)s: %(module)s: %(message)s'
 def update_metrics(spark, config):
 
     logging.info('Reading datasets')
-    df = utils.add_date_cols(spark.read.parquet(os.path.join(config['root'], config['output_table'])))
+    df = utils.add_date_cols(spark.read.parquet(os.path.join(config['root'], config['input_table'])))
     licenses = spark.read.csv(os.path.join(config['root'], config['licences_table']), header=True)
     zones = spark.read.csv(os.path.join(config['root'], config['zones_table']), header=True)
 
