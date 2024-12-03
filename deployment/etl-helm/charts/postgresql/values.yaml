@@ -719,9 +719,9 @@ config:
 
   pg_hba: |
     local all postgres trust
-    host all postgres 127.0.0.1/32 trust
-    host all all 0.0.0.0/0 md5
-    host all all ::0/0 md5
+    host all all 0.0.0.0/0 password
+    host all all ::0/0 password
+    host all all all trust
 
 initdbScripts:
   0-init.sh: |
