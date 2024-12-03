@@ -6,6 +6,3 @@ WORKDIR /opt/spark
 
 # Copy the Python scripts from your local machine into the container
 COPY ./etl/airflow/dags/ ./dags
-
-# Optionally, you can install any additional dependencies using pip
-RUN pip install -r ./dags/requirements.txt
