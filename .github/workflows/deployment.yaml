@@ -25,7 +25,7 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Publish to S3
-      run: aws s3 cp --recursive ./airflow/dags  s3://${{ secrets.BUCKET_NAME }}/${{ secrets.DAGS_FOLDER }} --exclude "*.pyc"
+      run: aws s3 cp --recursive ./etl/airflow/dags  s3://${{ secrets.BUCKET_NAME }}/${{ secrets.DAGS_FOLDER }} --exclude "*.pyc"
 
   build-image-and-push:
       runs-on: ubuntu-latest
