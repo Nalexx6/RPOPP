@@ -13,7 +13,6 @@ dependencies:
     version: "0.0.1"
     repository: file://charts/airflow
     condition: airflow.enabled
-    condition: kafka.enabled
   - name: postgresql
     version: "0.0.1"
     repository: file://charts/postgresql

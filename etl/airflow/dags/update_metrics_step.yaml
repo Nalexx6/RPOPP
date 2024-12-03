@@ -32,7 +32,7 @@ spec:
       - "--config"
       - "/opt/spark/dags/lib/config.yaml"
       - "--db-url"
-      - "http://etl-postgres.default.svc.cluster.local"
+      - "etl-helm-postgresql.default.svc.cluster.local"
       - "--db-pass"
       - "spark"
   restartPolicy:
@@ -69,6 +69,6 @@ kubernetes:
   #   value: TEST_VALUE
   env_vars:
     - name: AWS_ACCESS_KEY_ID
-      value: {AWS_ACCESS_KEY_ID}
+      value: ${AWS_ACCESS_KEY_ID}
     - name: AWS_SECRET_ACCESS_KEY
-      value: {AWS_SECRET_ACCESS_KEY}
+      value: ${AWS_SECRET_ACCESS_KEY}

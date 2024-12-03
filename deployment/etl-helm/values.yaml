@@ -30,11 +30,11 @@ airflow:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN_CMD: "bash -c 'eval \"$DATABASE_SQLALCHEMY_CMD\"'"
     extraEnv:
       - name: PIPELINES_S3_PATH
-        value: "s3://etl-coursework/airflow/pipelines"
+        value: "s3://nalexx6-practice/dags/"
       - name: ENVIRONMENT
         value: "DEV"
       - name: AIRFLOW_S3_BUCKET_NAME
-        value: "etl-coursework"
+        value: "nalexx6-practice"
       - name: AIRFLOW__API__AUTH_BACKENDS
         value: 'airflow.api.auth.backend.basic_auth'
       - name: AWS_ACCESS_KEY_ID
@@ -128,9 +128,9 @@ airflow:
         enabled: true
     s3Sync:
       enabled: True
-      regular: False
-      bucketName: etl-coursework
-      keyPath: airflow/dags
+      regular: True
+      bucketName: nalexx6-practice
+      keyPath: dags
     gitSync:
       enabled: False
   logs:
@@ -138,59 +138,6 @@ airflow:
       enabled: False
   redis:
     enabled: false
-
-kafka:
-  enabled: false
-  service:
-    ports:
-      client: 9092
-      controller: 9093
-      interbroker: 9094
-      external: 9095
-  controller:
-    resources:
-      limits:
-        cpu: 400m
-        memory: 1Gi
-      requests:
-        cpu: 100m
-        memory: 0.5Gi
-    controllerOnly: false
-    replicaCount: 1
-    heapOpts: -Xmx512m -Xms512m
-    persistence:
-      mountPath: /bitnami/kafka
-    logPersistence:
-      mountPath: /opt/bitnami/kafka/logs
-  kraft:
-    enabled: true
-  zookeeper:
-    enabled: false
-    replicaCount: 1
-  broker:
-    resources:
-      limits:
-        cpu: 400m
-        memory: 1Gi
-      requests:
-        cpu: 100m
-        memory: 0.5Gi
-    replicaCount: 0
-    podLabels: {}
-    podAnnotations: {}
-    heapOpts: -Xmx512m -Xms512m
-    persistence:
-      mountPath: /bitnami/kafka
-    logPersistence:
-      mountPath: /opt/bitnami/kafka/logs
-  externalAccess:
-    autoDiscovery:
-      image:
-        pullPolicy: IfNotPresent
-  metrics:
-    jmx:
-      enabled: false
-      kafkaJmxPort: 5555
 
 postgresql:
   enabled: true
@@ -221,7 +168,10 @@ postgresql:
       psql --username postgres -c "GRANT ALL PRIVILEGES ON DATABASE airflow_db to airflow;"
       psql --username postgres -d airflow_db -c "CREATE EXTENSION pg_stat_statements;"
       echo "-- DATA DB INITIALIZATION --"
-      psql --username postgres -c "CREATE DATABASE test;"
+      psql --username postgres -c "CREATE USER spark WITH PASSWORD 'spark';"
+      psql --username postgres -c "CREATE DATABASE spark_db;"
+      psql --username postgres -c "GRANT ALL PRIVILEGES ON DATABASE spark_db to spark;"
+      psql --username postgres -d spark_db -c "CREATE EXTENSION pg_stat_statements;"
       echo "SETTING UP PB HBA CONF"
       mv /var/lib/postgresql/data/pgdata/pg_hba.conf /var/lib/postgresql/data/pgdata/pg_hba.conf.bak
       echo "local all postgres trust" >> /var/lib/postgresql/data/pgdata/pg_hba.conf
